@@ -21,7 +21,7 @@ public class Room extends Fixture {
 			return this.exits[1];
 		case "east":
 			return this.exits[2];
-		case "South":
+		case "south":
 			return this.exits[3];
 		default:
 			return null;
@@ -35,11 +35,32 @@ public class Room extends Fixture {
 			break;
 		case "north":
 			exits[1] = exit;
+			break;
 		case "east":
 			exits[2] = exit;
+			break;
 		case "south":
 			exits[3] = exit;
+			break;
 		}
 	}
 	
+	@Override
+	public String toString() {
+		return this.name + "\n\n" + this.shortDescription +"\n\n" + this.longDescription + "\n";
+		
+	}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public void printExits() {
+		String [] directions = {"west", "north", "east", "south"};
+		System.out.println("Exits: \n");
+		for(int i = 0 ; i < exits.length;  i ++) {
+			if (exits[i] != null)
+				System.out.println(directions[i] + ": " + exits[i].getName());
+		}
+	}
 }

@@ -5,7 +5,7 @@ import fixtures.Room;
 public class RoomManager {
 
 	private Room startingRoom;	
-	private Room[] rooms;
+	private Room[] rooms = new Room[5];
 	
 	public void init() {
 		Room foyer = new Room("Foyer", 
@@ -36,7 +36,11 @@ public class RoomManager {
 		kitchen.setRoomExit(livingRoom, "east");
 		den.setRoomExit(livingRoom, "south");
 		bedRoom.setRoomExit(livingRoom, "west");
-		
+		rooms[0] = foyer;
+		rooms[1] = livingRoom;
+		rooms[2] = kitchen;
+		rooms[3] = den;
+		rooms[4] = bedRoom;
 		startingRoom = foyer;
 	}
 	
