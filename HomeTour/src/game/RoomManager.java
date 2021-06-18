@@ -1,12 +1,17 @@
 package game;
 
 import fixtures.Room;
+import java.util.ArrayList;
 
 public class RoomManager {
 
 	private Room startingRoom;	
-	private Room[] rooms = new Room[5];
+	//private Room[] rooms = new Room[5];
+	private static ArrayList<Room> rooms = new ArrayList<>();
 	
+	public RoomManager() {
+		this.init();
+	}
 	public void init() {
 		Room foyer = new Room("Foyer", 
 				"A small entryway",
@@ -27,7 +32,6 @@ public class RoomManager {
 				"Place where a person sleeps",
 				"Just a normal bedroom with the only exit to the west.  It leads to the living room.");
 		
-		rooms = new Room[5];
 		foyer.setRoomExit(livingRoom, "north");
 		livingRoom.setRoomExit(bedRoom, "east");
 		livingRoom.setRoomExit(den, "north");
@@ -36,15 +40,21 @@ public class RoomManager {
 		kitchen.setRoomExit(livingRoom, "east");
 		den.setRoomExit(livingRoom, "south");
 		bedRoom.setRoomExit(livingRoom, "west");
-		rooms[0] = foyer;
-		rooms[1] = livingRoom;
-		rooms[2] = kitchen;
-		rooms[3] = den;
-		rooms[4] = bedRoom;
+		//rooms.add(foyer);
+		//rooms.add(livingRoom);
+		//rooms.add(kitchen);
+		//rooms.add(den);
+		//rooms.add(bedRoom);
 		startingRoom = foyer;
 	}
 	
+	
+	
 	public Room getStartingRoom(){
 		return startingRoom;
+	}
+	
+	public static void addRoom(Room room) {
+		rooms.add(room);
 	}
 }

@@ -4,22 +4,16 @@ import java.util.Scanner;
 import fixtures.Room;
 
 public class Main {
-	private static Scanner in = new Scanner(System.in)
-			;
+	private static Scanner in = new Scanner(System.in);
+	
+	
 	public static void main(String[] args) {
-		// set up rooms
+		// set up rooms and player
 		RoomManager rm = new RoomManager();
-		rm.init();
 		String[] parsed;
+		Player mover = new Player(rm);
 		
-		// set up player
-		Player mover = new Player();
-		mover.setCurrentRoom(rm.getStartingRoom());
-		
-		// game - loop
-			//display prompt
-			//collect input
-			//parse input
+		//Loop to ask what to do
 		boolean quit = false;
 		while(!quit) {
 			
@@ -33,18 +27,29 @@ public class Main {
 				quit = true;
 				continue;
 			}
+			else if(parsed[0].equals("help")) {
+				printHelp();
+			}else {
+				parse(parsed,mover);
+			}
 			
-			parse(parsed,mover);
+			
 			
 		}
 			
+		in.close();
 	}
 	
-	
+	public static void printHelp() {
+		System.out.println("If you are wanting to change rooms type go followed by the direction of the exit.  like go north");
+	}
 	private static void printRoom(Player player) {
+		System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
 		System.out.println(player.getCurrentRoom().toString());
+		System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
 		player.getCurrentRoom().printExits();
 		System.out.println("What do you want to do?");
+		System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
 	}
 	
 	private static String[] collectInput() {
@@ -56,7 +61,7 @@ public class Main {
 	private static void parse(String[] command, Player player) {
 		switch (command[0].toLowerCase().trim()) {
 		case "go":
-			Room destination = player.getCurrentRoom().getExit(command[1]);
+			Room destination = player.getCurrentRoom().getExit(command[1].toLowerCase());
 			if (destination != null)
 				player.setCurrentRoom(destination);
 			else

@@ -1,51 +1,32 @@
 package fixtures;
 
+import java.util.Map;
+
+import game.RoomManager;
+
+import java.util.HashMap;
+
 public class Room extends Fixture {
 
-	Room[] exits;
+	private Map<String, Room> exits = new HashMap<String, Room>();
 	
 	public Room(String name, String shortDescription, String longDescription) {
 		super(name, shortDescription, longDescription);
-		this.exits = new Room[4];
+		RoomManager.addRoom(this);
 	}
 	
-	public Room[] getExits() {
+	public Map<String, Room> getExits() {
 		return exits;
 	}
 	
 	public Room getExit(String direction) {
-		switch (direction.toLowerCase()) {
-		case "west":
-			return this.exits[0];
-		case "north":
-			return this.exits[1];
-		case "east":
-			return this.exits[2];
-		case "south":
-			return this.exits[3];
-		default:
-			return null;
-		}
+		return exits.get(direction);
 	}
 	
 	public void setRoomExit(Room exit, String direction) {
-		switch (direction.toLowerCase()) {
-		case "west":
-			exits[0] = exit;
-			break;
-		case "north":
-			exits[1] = exit;
-			break;
-		case "east":
-			exits[2] = exit;
-			break;
-		case "south":
-			exits[3] = exit;
-			break;
-		}
+		exits.put(direction, exit);
 	}
 	
-	@Override
 	public String toString() {
 		return this.name + "\n\n" + this.shortDescription +"\n\n" + this.longDescription + "\n";
 		
@@ -56,11 +37,11 @@ public class Room extends Fixture {
 	}
 	
 	public void printExits() {
-		String [] directions = {"west", "north", "east", "south"};
-		System.out.println("Exits: \n");
-		for(int i = 0 ; i < exits.length;  i ++) {
-			if (exits[i] != null)
-				System.out.println(directions[i] + ": " + exits[i].getName());
+		
+		System.out.println("Exits:");
+		for( String key: exits.keySet()) {
+			Room value = exits.get(key);
+			System.out.println(key +":" + value.getName());
 		}
 	}
 }
