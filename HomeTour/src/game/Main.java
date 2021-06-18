@@ -39,7 +39,8 @@ public class Main {
 	}
 	
 	public static void printHelp() {
-		System.out.println("If you are wanting to change rooms type go followed by the direction of the exit.  like go north");
+		System.out.println("If you are wanting to change rooms type go followed by the direction of the exit.  like :\ngo north\nOtherwise type what is says under actions verbatum. "
+				+ "			\nIf you want to quit type quit.");
 	}
 	private static void printRoom(Player player) {
 		System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
