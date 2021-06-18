@@ -1,6 +1,7 @@
 package game;
 
-import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
 import fixtures.Room;
 
@@ -8,11 +9,14 @@ public class Player {
 	
 	private Room currentRoom;
 	
-	private HashMap<String, String> items = new HashMap<String, String>();
+	private List<String> items = new ArrayList<String>();
 	
 	
 	public Player(RoomManager begginning) {
 		this.currentRoom = begginning.getStartingRoom();
+		items.add("keys");
+		items.add("coat");
+		items.add("watch");
 	}
 	public Room getCurrentRoom() {
 		return currentRoom;
@@ -22,4 +26,11 @@ public class Player {
 		this.currentRoom = current;
 	}
 
+	public void removeItem(String key) {
+		int index = items.indexOf(key);
+		items.remove(index);
+	}
+	public void addItem(String item) {
+		items.add(item);
+	}
 }

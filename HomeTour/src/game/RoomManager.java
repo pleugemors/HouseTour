@@ -6,7 +6,6 @@ import java.util.ArrayList;
 public class RoomManager {
 
 	private Room startingRoom;	
-	//private Room[] rooms = new Room[5];
 	private static ArrayList<Room> rooms = new ArrayList<>();
 	
 	public RoomManager() {
@@ -16,7 +15,7 @@ public class RoomManager {
 		Room foyer = new Room("Foyer", 
 				"A small entryway",
 				"Its a small entryway to a unsignificant house.  It's laminate floor leads northwards to the living"+
-				" room");
+				" room.  There is a small nail on the wall just inside the door.");
 		Room livingRoom = new Room("Living Room", 
 				"A general area of comfort and relaxation for family and visitors",
 				"No significant features.  To the west lies the kitchen.  To the north lies a den. To the east lies" +
@@ -33,6 +32,7 @@ public class RoomManager {
 				"Just a normal bedroom with the only exit to the west.  It leads to the living room.");
 		
 		foyer.setRoomExit(livingRoom, "north");
+		foyer.setActions("hang keys", "The keys you had when you walked in are now hanging on the nail.");
 		livingRoom.setRoomExit(bedRoom, "east");
 		livingRoom.setRoomExit(den, "north");
 		livingRoom.setRoomExit(kitchen, "west");
@@ -40,15 +40,8 @@ public class RoomManager {
 		kitchen.setRoomExit(livingRoom, "east");
 		den.setRoomExit(livingRoom, "south");
 		bedRoom.setRoomExit(livingRoom, "west");
-		//rooms.add(foyer);
-		//rooms.add(livingRoom);
-		//rooms.add(kitchen);
-		//rooms.add(den);
-		//rooms.add(bedRoom);
 		startingRoom = foyer;
-	}
-	
-	
+	}	
 	
 	public Room getStartingRoom(){
 		return startingRoom;
